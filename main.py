@@ -54,7 +54,7 @@ if __name__ == '__main__':
     with torch.no_grad():
         for (images, labels) in testloader:
             images, labels = images.to(device), labels.to(device)
-            outputs, _ = net(images)
+            outputs = net(images)
             numbers, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
