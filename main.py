@@ -53,14 +53,11 @@ if __name__ == '__main__':
     total = 0
     with torch.no_grad():
         for (images, labels) in testloader:
-            images, labels = images.to('cuda:0'), labels.to('cuda:0')
+            images, labels = images.to(device), labels.to(device)
             outputs, _ = net(images)
             numbers, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
     print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
-<<<<<<< HEAD
     torch.save(net.state_dict(), 'model.pth')
-=======
->>>>>>> 77a4ebe (first update)
